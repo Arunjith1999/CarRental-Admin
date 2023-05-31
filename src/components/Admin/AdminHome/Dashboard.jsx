@@ -31,10 +31,11 @@ const Dashboard = () => {
   },[])
 
   return (
-    // <div>
-    //   <h1>Total Revenue: {revenue} </h1>
-    // </div>
+   
     <>
+      <div>
+      <h1 style={{fontSize:'30px',fontFamily:'sans-serif',fontWeight:'bold'}}>Total Revenue: ₹ {revenue} </h1>
+     </div>
 
     <div class="container-fluid">
             {/* <!--  Row 1 --> */}
