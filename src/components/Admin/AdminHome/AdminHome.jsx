@@ -2,13 +2,20 @@ import React, { useState } from 'react'
 import '../../../assets/css/Admin1.css'
 import '../../../assets/css/Admin2.css'
 import UserList from './UserList'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import Location from './Location'
 import RentRequest from './RentRequest'
 import CarList from './CarList'
+import Cookies from 'js-cookie'
 const AdminHome = () => {
+    const navigate = useNavigate()
   const [status,setstatus]  = useState('')
+  const logoutHandler = ()=>{
+    Cookies.remove('jwt')
+    Cookies.remove('admin_id')
+    navigate('/')
+  }
   const handleClick =(s)=>{
     setstatus(s)
   }
@@ -25,7 +32,7 @@ const AdminHome = () => {
             <div className="sidebar-brand-icon rotate-n-15">
                 <i className="fas fa-laugh-wink"></i>
             </div>
-            <div className="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div className="sidebar-brand-text mx-3">Car Rental <sup></sup></div>
         </a>
 
 
@@ -150,7 +157,7 @@ const AdminHome = () => {
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i className="fas fa-bell fa-fw"></i>
                           
-                            <span className="badge badge-danger badge-counter">3+</span>
+                            {/* <span className="badge badge-danger badge-counter"></span> */}
                         </a>
                  
                         <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -201,7 +208,7 @@ const AdminHome = () => {
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i className="fas fa-envelope fa-fw"></i>
                         
-                            <span className="badge badge-danger badge-counter">7</span>
+                            {/* <span className="badge badge-danger badge-counter">7</span> */}
                         </a>
                   
                         <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -265,12 +272,13 @@ const AdminHome = () => {
 
                  
                     <li className="nav-item dropdown no-arrow">
-                        <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        {/* <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                             <img className="img-profile rounded-circle"
                                 src="img/undraw_profile.svg"/>
-                        </a>
+                        </a> */}
+                        <button className='btn btn-danger' style={{marginTop:'1.3rem'}} onClick={logoutHandler}>Logout</button>
                        
                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                             aria-labelledby="userDropdown">

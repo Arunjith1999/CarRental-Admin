@@ -7,8 +7,6 @@ import EditModal from '../modal/EditModal'
 import Swal from 'sweetalert2'
 import AddCar from './AddCar'
 import EditCar from './EditCar'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleDown } from '@fortawesome/free-solid-svg-icons'
 import CategoryModal from '../modal/CategoryModal'
 import BrandModal from '../modal/BrandModal'
 import AddCategory from './AddCategory'
@@ -81,7 +79,7 @@ const CarList = () => {
             Add New Car</button> */}
             <div class="form-group" style={{width:'7rem'}}>
                 <label for="dropdown" class="form-label">Add New..</label>
-                <select class="form-control" id="dropdown"  style={{ backgroundColor:'#1E90FF',color:'white'}} onChange={handleDropDown}>
+                <select class="form-control" id="dropdown"  style={{ backgroundColor:'black',color:'white'}} onChange={handleDropDown}>
                 <option value="option1">Car </option>
                   <option value="option2">Category</option>
                   <option value="option3">Brand</option>

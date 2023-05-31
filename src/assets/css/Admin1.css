@@ -4024,10 +4024,13 @@
   .nav-link {
     display: block;
     padding: 0.5rem 1rem;
+    color: #000;
   }
   
   .nav-link:hover, .nav-link:focus {
-    text-decoration: none;
+    background-color: darkblue;
+    
+    /* text-decoration: none; */
   }
   
   .nav-link.disabled {

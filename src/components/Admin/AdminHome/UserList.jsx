@@ -8,6 +8,14 @@ const UserList = () => {
 
   const [user, setUser] = useState([])
   const [showDeleteSwal, setShowDeleteSwal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const filteredUsers = user.filter(
+    (u) =>
+      u.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      u.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      u.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   useEffect(()=>{
     user_details();
   },[])
@@ -76,6 +84,16 @@ const UserList = () => {
 
   return (
     <div>
+       <input
+        type="text"
+        className="form-control bg-light small"
+        style={{width:'15rem',marginBottom:'3rem'}}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search users..."
+        
+      />
+      
       <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -88,7 +106,7 @@ const UserList = () => {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    {user.map((r)=>(
+                                    {filteredUsers.map((r)=>(
                                           <tbody>
                                           <tr>
                                                <td>{r.id}</td>

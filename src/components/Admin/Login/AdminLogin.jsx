@@ -10,7 +10,7 @@ import {useForm} from 'react-hook-form'
 import { adminPost } from '../../../utils/Constants'
 import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, TextField, Typography} from '@mui/material';
+import { TextField} from '@mui/material';
 import axios from '../../../utils/Axios'
 
 
