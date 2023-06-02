@@ -2,19 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { getUser, userStatus } from '../../../utils/Constants'
 import axios from '../../../utils/Axios'
 import Swal from 'sweetalert2'
-import { toast } from 'react-hot-toast'
+import ReactPaginate from 'react-paginate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft, faArrowAltCircleRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 const UserList = () => {
 
   const [user, setUser] = useState([])
   const [showDeleteSwal, setShowDeleteSwal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
+  const usersPerPage = 10;
+ 
   const filteredUsers = user.filter(
     (u) =>
       u.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       u.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       u.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const offset = currentPage * usersPerPage;
+  const paginatedUsers = filteredUsers.slice(offset, offset + usersPerPage);
 
   useEffect(()=>{
     user_details();
@@ -106,7 +114,7 @@ const UserList = () => {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    {filteredUsers.map((r)=>(
+                                    {paginatedUsers.map((r)=>(
                                           <tbody>
                                           <tr>
                                                <td>{r.id}</td>
@@ -129,6 +137,26 @@ const UserList = () => {
                                 </table>
                             </div>
                         </div>
+                        <ReactPaginate
+                          previousLabel={
+                            <span>
+                              <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+                              Prev
+                            </span>
+                          }
+                          nextLabel={<span>
+                            Next
+                            <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                            
+                          </span>}
+                          pageCount={Math.ceil(filteredUsers.length / usersPerPage)}
+                          onPageChange={(data) => setCurrentPage(data.selected)}
+                          containerClassName={'pagination'}
+                          previousLinkClassName={'pagination__link'}
+                          nextLinkClassName={'pagination__link'}
+                          disabledClassName={'pagination__link--disabled'}
+                          activeClassName={'pagination__link--active'}
+                        />
     </div>
   )
 }

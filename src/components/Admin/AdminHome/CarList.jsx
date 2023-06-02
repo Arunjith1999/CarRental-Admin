@@ -11,6 +11,10 @@ import CategoryModal from '../modal/CategoryModal'
 import BrandModal from '../modal/BrandModal'
 import AddCategory from './AddCategory'
 import AddBrand from './AddBrand'
+import ReactPaginate from 'react-paginate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+
 
 const CarList = () => {
     const navigate = useNavigate()
@@ -21,6 +25,10 @@ const CarList = () => {
     const [brandPopUp, setBrandPopUp] = useState(false)
     const [id, setId] = useState(null)
     const [showDeleteSwal, setShowDeleteSwal] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredCars, setFilteredCars] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const carsPerPage = 10;
   
     useEffect(()=>{
         axios.get(getCar).then((res)=>{
@@ -71,8 +79,31 @@ const CarList = () => {
               setBrandPopUp(true)
           }
     }
+    const filterCars = () => {
+      const filtered = car.filter(
+        (c) =>
+          c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          c.fuel.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          c.rent_price.toString().includes(searchTerm.toString())
+      );
+      setFilteredCars(filtered);
+    };
+    const offset = currentPage * carsPerPage;
+    const paginatedCars = filteredCars.slice(offset, offset + carsPerPage);
+    useEffect(() => {
+      filterCars();
+    }, [searchTerm, car]);
   return (
     <div>
+      <input
+        type="text"
+        className="form-control bg-light small"
+        style={{width:'15rem',marginBottom:'3rem'}}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search cars..."
+        
+      />
         <div>
             <u><h3 style={{fontFamily:'sans-serif',textAlign:'center'}}>Manage Cars</h3></u>
         {/* <button className='btn btn-success'style={{marginLeft:'70rem',marginBottom:'1rem',borderRadius:'20px'}}onClick={()=> setOpenPopUp(true)}>
@@ -101,7 +132,7 @@ const CarList = () => {
 
                                         </tr>
                                     </thead>
-                                    {car.map((r)=>(
+                                    {paginatedCars.map((r)=>(
                                           <tbody>
                                           <tr>
                                                <td>{r.id}</td>
@@ -123,6 +154,26 @@ const CarList = () => {
                                     
                                 </table>
                             </div>
+                            <ReactPaginate
+                          previousLabel={
+                            <span>
+                              <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+                              Prev
+                            </span>
+                          }
+                          nextLabel={<span>
+                            Next
+                            <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                            
+                          </span>}
+                          pageCount={Math.ceil(filteredCars.length / carsPerPage)}
+                          onPageChange={(data) => setCurrentPage(data.selected)}
+                          containerClassName={'pagination'}
+                          previousLinkClassName={'pagination__link'}
+                          nextLinkClassName={'pagination__link'}
+                          disabledClassName={'pagination__link--disabled'}
+                          activeClassName={'pagination__link--active'}
+                        />
                         </div>
                         <EditModal
                             editPopUp ={editPopUp}

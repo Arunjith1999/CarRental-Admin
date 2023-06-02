@@ -29,6 +29,12 @@ const schema = yup.object().shape({
 const AdminLogin = () => {
     const Navigate = useNavigate()
     const {register, handleSubmit, formState : {errors}} = useForm({resolver : yupResolver(schema)})
+    const token = Cookies.get('admin_id')
+    useEffect(()=>{
+       if(token){
+        Navigate('/admin_home')
+       }
+    })
     const onSubmit =(data)=>{
         axios.post(adminPost,data,{
             headers:{'content-Type':"application/json"},

@@ -6,15 +6,39 @@ import { Link, useNavigate } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import Location from './Location'
 import RentRequest from './RentRequest'
+import Swal from 'sweetalert2'
 import CarList from './CarList'
 import Cookies from 'js-cookie'
 const AdminHome = () => {
     const navigate = useNavigate()
   const [status,setstatus]  = useState('')
+  const [showDeleteSwal, setShowDeleteSwal] = useState(false);
+
+
   const logoutHandler = ()=>{
-    Cookies.remove('jwt')
-    Cookies.remove('admin_id')
-    navigate('/')
+    setShowDeleteSwal(true);
+        {showDeleteSwal && (
+            Swal.fire({
+              title: 'Are you sure?',
+              text: 'You Want to logout!',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes, confirm!',
+              cancelButtonText: 'Cancel'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Cookies.remove('jwt')
+                Cookies.remove('admin_id')
+                navigate('/')
+                  setShowDeleteSwal(false);
+                }else {
+                  
+                  setShowDeleteSwal(false);
+                }
+              })
+            )}
+
+   
   }
   const handleClick =(s)=>{
     setstatus(s)
@@ -22,10 +46,10 @@ const AdminHome = () => {
   
   return (
     <>
-    <div id="wrapper" style={{'zoom':1.34}}>
+    <div id="wrapper" style={{'zoom':1.34}} >
 
   
-    <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul className="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar" >
 
  
         <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -36,13 +60,13 @@ const AdminHome = () => {
         </a>
 
 
-        <hr className="sidebar-divider my-0"/>
+        <hr className="sidebar-divider my-0" />
 
 
         <li className="nav-item">
             <Link  className="nav-link" href="index.html">
                 <i className="fas fa-fw fa-tachometer-alt"></i>
-                <span onClick={()=>handleClick('Dashboard')}>Dashboard</span></Link>
+                <span onClick={()=>handleClick('Dashboard')}  style={{color:'white'}}>Dashboard</span></Link>
         </li>
 
      
@@ -57,28 +81,28 @@ const AdminHome = () => {
         <li className="nav-item mt-3">
             <Link className="nav-link collapsed" href="#" >
                 <i className="fas fa-fw fa-cog"></i>
-                <span onClick={()=>handleClick('User')}>User Management</span>
+                <span onClick={()=>handleClick('User')} style={{color:'white'}}>User Management</span>
             </Link>
             
         </li>
         <li className="nav-item mt-3">
             <Link className="nav-link collapsed" href="#" >
                 <i className="fas fa-fw fa-cog"></i>
-                <span onClick={()=>handleClick('Car')}>Car Management</span>
+                <span onClick={()=>handleClick('Car')} style={{color:'white'}}>Car Management</span>
             </Link>
             
         </li>
         <li className="nav-item mt-3">
             <Link className="nav-link collapsed" href="#" >
                 <i className="fas fa-fw fa-cog"></i>
-                <span onClick={()=>handleClick('Location')}>Location</span>
+                <span onClick={()=>handleClick('Location')} style={{color:'white'}}>Location</span>
             </Link>
             
         </li>
         <li className="nav-item mt-3">
             <Link className="nav-link collapsed" href="#" >
                 <i className="fas fa-fw fa-cog"></i>
-                <span onClick={()=>handleClick('Rent')}>Rent Request</span>
+                <span onClick={()=>handleClick('Rent')} style={{color:'white'}}>Rent Request</span>
             </Link>
             
         </li>
@@ -111,18 +135,7 @@ const AdminHome = () => {
                 </button>
 
            
-                <form
-                    className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div className="input-group">
-                        <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..."
-                            aria-label="Search" aria-describedby="basic-addon2"/>
-                        <div className="input-group-append">
-                            <button className="btn btn-primary" type="button">
-                                <i className="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+             
 
              
                 <ul className="navbar-nav ml-auto">
@@ -208,7 +221,7 @@ const AdminHome = () => {
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i className="fas fa-envelope fa-fw"></i>
                         
-                            {/* <span className="badge badge-danger badge-counter">7</span> */}
+                           
                         </a>
                   
                         <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -272,12 +285,7 @@ const AdminHome = () => {
 
                  
                     <li className="nav-item dropdown no-arrow">
-                        {/* <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                            <img className="img-profile rounded-circle"
-                                src="img/undraw_profile.svg"/>
-                        </a> */}
+                        
                         <button className='btn btn-danger' style={{marginTop:'1.3rem'}} onClick={logoutHandler}>Logout</button>
                        
                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"

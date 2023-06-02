@@ -4028,7 +4028,8 @@
   }
   
   .nav-link:hover, .nav-link:focus {
-    background-color: darkblue;
+    background-color:orangered;
+    
     
     /* text-decoration: none; */
   }
@@ -4079,7 +4080,7 @@
   
   .nav-pills .nav-link.active,
   .nav-pills .show > .nav-link {
-    color: #fff;
+    color:white;
     background-color: #4e73df;
   }
   
