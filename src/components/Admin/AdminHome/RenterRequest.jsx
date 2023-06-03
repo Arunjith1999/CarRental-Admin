@@ -94,7 +94,7 @@ const RenterRequest = (props) => {
                                 <div class="col-md-12 col-lg-10 col-12">
                                     <h4 style={{textAlign:'center',marginTop:'2rem'}}> Image of the Car</h4>
                                          <div class="card" style={{width: '18rem'}}>
-                                            <img class="card-img-top" src={`http://127.0.0.1:8000${carDetails.image}`} alt="Card image cap"/>
+                                            <img class="card-img-top" src={`https://ap.carrent.website${carDetails.image}`} alt="Card image cap"/>
                                             <div class="card-body">
                                                 <p class="card-text">Image</p>
                                             </div>
@@ -103,7 +103,7 @@ const RenterRequest = (props) => {
                                         <div className=' row col-md-12'>
                                             <div className='col-md-4'>
                                                 <div class="card" style={{width: '12rem'}}>
-                                                <img class="card-img-top" src={`http://127.0.0.1:8000${carDetails.image1}`} alt="Card image cap"/>
+                                                <img class="card-img-top" src={`https://ap.carrent.website${carDetails.image1}`} alt="Card image cap"/>
                                                 <div class="card-body">
                                                     <p class="card-text">Image 1</p>
                                                 </div>
@@ -111,7 +111,7 @@ const RenterRequest = (props) => {
                                             </div>
                                             <div className='col-md-4'>
                                               <div class="card" style={{width: '12rem'}}>
-                                                <img class="card-img-top" src={`http://127.0.0.1:8000${carDetails.image2}`} alt="Card image cap"/>
+                                                <img class="card-img-top" src={`https://ap.carrent.website${carDetails.image2}`} alt="Card image cap"/>
                                                 <div class="card-body">
                                                     <p class="card-text">Image 2</p>
                                                 </div>
@@ -120,7 +120,7 @@ const RenterRequest = (props) => {
                                             </div>
                                             <div className='col-md-4'>
                                               <div class="card" style={{width: '12rem'}}>
-                                                <img class="card-img-top" src={`http://127.0.0.1:8000${carDetails.image3}`} alt="Card image cap"/>
+                                                <img class="card-img-top" src={`https://ap.carrent.website${carDetails.image3}`} alt="Card image cap"/>
                                                 <div class="card-body">
                                                     <p class="card-text">Image 3</p>
                                                 </div>
@@ -130,7 +130,7 @@ const RenterRequest = (props) => {
                                         </div>
                                         <h4 style={{textAlign:'center',marginTop:'2rem'}}>Car Document</h4>
                                         <div class="card" style={{width: '18rem'}}>
-                                                <img class="card-img-top" src={`http://127.0.0.1:8000${carDetails.image4}`} alt="Card image cap"/>
+                                                <img class="card-img-top" src={`https://ap.carrent.website${carDetails.image4}`} alt="Card image cap"/>
                                                 <div class="card-body">
                                                     <p class="card-text">Document</p>
                                                 </div>

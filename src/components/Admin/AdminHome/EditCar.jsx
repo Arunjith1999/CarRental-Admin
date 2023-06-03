@@ -139,23 +139,23 @@ const onSubmit =async(data, id) =>{
                                         <label class="my-auto">Update Your Image </label>
                                          <input type="file"  id ='image'  class="form-control" {...register('image')} name ='image'  />
                                        
-                                            <img src={`http://127.0.0.1:8000${carDetails.image}`} alt="Preview" width='120px' height='120px'/>
+                                            <img src={`https://ap.carrent.website${carDetails.image}`} alt="Preview" width='120px' height='120px'/>
                                         <div>
                                             <h6 style={{textAlign:'center',paddingTop:'2rem'}}>Upload Images For Car Detail Page</h6>
                                             <label class="my-auto">Upload Your File </label>
                                             <input id="image1" type="file" class="form-control" {...register('image1')}  name ='image1' />
-                                            <img src={`http://127.0.0.1:8000${carDetails.image1}`} alt="Preview" width='120px' height='120px'/>
+                                            <img src={`https://ap.carrent.website${carDetails.image1}`} alt="Preview" width='120px' height='120px'/>
 
 
 
                                          <label class="my-auto">Upload Your File </label>
                                          <input id="image2" type="file" class="form-control"  {...register('image2')}  name ='image2' />
-                                         <img src={`http://127.0.0.1:8000${carDetails.image2}`} alt="Preview" width='120px' height='120px'/>
+                                         <img src={`https://ap.carrent.website${carDetails.image2}`} alt="Preview" width='120px' height='120px'/>
 
 
                                          <label class="my-auto">Upload Your File </label>
                                          <input id="image3" type="file" class="form-control"   {...register('image3')}   name ='image3' />
-                                         <img src={`http://127.0.0.1:8000${carDetails.image3}`} alt="Preview" width='120px' height='120px'/>
+                                         <img src={`https://ap.carrent.website${carDetails.image3}`} alt="Preview" width='120px' height='120px'/>
 
 
                                          </div>

@@ -68,7 +68,7 @@ const deleteHandler = (id) =>{
                                             {request.map((r)=>(
                                               <>
                                                 <td>{r.name}</td>
-                                                <td><img style={{width:'120px',height:'90px'}} src={`http://127.0.0.1:8000${r.image}`} alt="" />  </td>
+                                                <td><img style={{width:'120px',height:'90px'}} src={`https://ap.carrent.website${r.image}`} alt="" />  </td>
                                                
                                                 <td>{r.fuel}</td>
                                                 <td>{r.rent_price}</td>
