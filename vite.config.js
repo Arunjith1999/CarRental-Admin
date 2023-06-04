@@ -5,7 +5,7 @@ import historyApiFallback from 'connect-history-api-fallback';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    middleware: [historyApiFallback()],
-  },
+  // server: {
+  //   middleware: [historyApiFallback()],
+  // },
 })
