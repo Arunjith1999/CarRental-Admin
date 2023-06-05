@@ -28,6 +28,8 @@ const CarList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredCars, setFilteredCars] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
+    const [sortField, setSortField] = useState(''); 
+    const [sortDirection, setSortDirection] = useState('asc');
     const carsPerPage = 10;
   
     useEffect(()=>{
@@ -66,6 +68,14 @@ const CarList = () => {
           )}
          
     }
+    const handleSort = (field) => {
+      if (field === sortField) {
+        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+      } else {
+        setSortField(field);
+        setSortDirection('asc');
+      }
+    };
     const handleDropDown = (e) =>{
       console.log(e);
           if (e.target.value === 'option1'){
@@ -80,19 +90,35 @@ const CarList = () => {
           }
     }
     const filterCars = () => {
-      const filtered = car.filter(
+      let filtered = [...car]; // Create a new copy of the car array
+  
+      filtered = filtered.filter(
         (c) =>
           c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           c.fuel.toLowerCase().includes(searchTerm.toLowerCase()) ||
           c.rent_price.toString().includes(searchTerm.toString())
       );
+      if (sortField) {
+        filtered = filtered.sort((a, b) => {
+         
+          const fieldA = a[sortField].toString().toLowerCase();
+          const fieldB = b[sortField].toString().toLowerCase();
+    
+        
+          if (sortDirection === 'asc') {
+            return fieldA.localeCompare(fieldB);
+          } else {
+            return fieldB.localeCompare(fieldA);
+          }
+        });
+      }
       setFilteredCars(filtered);
     };
     const offset = currentPage * carsPerPage;
     const paginatedCars = filteredCars.slice(offset, offset + carsPerPage);
     useEffect(() => {
       filterCars();
-    }, [searchTerm, car]);
+    },[searchTerm, car, sortField, sortDirection]);
   return (
     <div>
       <input
@@ -124,10 +150,24 @@ const CarList = () => {
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
+                                            <th>Name
+                                            <button
+                                                className="btn btn-link btn-sm"
+                                                onClick={() => handleSort('name')}
+                                              >
+                                                Sort
+                                              </button>
+                                            </th>
                                             <th>Image</th>
                                             <th>Fuel Type</th>
-                                            <th>Rent-Price</th>
+                                            <th>Rent-Price
+                                            <button
+                                              className="btn btn-link btn-sm"
+                                              onClick={() => handleSort('rent_price')}
+                                            >
+                                              Sort
+                                            </button>
+                                             </th>
                                             <th>Action</th>
 
                                         </tr>
